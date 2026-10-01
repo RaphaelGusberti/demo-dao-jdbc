@@ -26,5 +26,12 @@ public class App {
         }
         System.out.println("-=+=- Test 2 -> seller findByDepartment -=+=-");
 
+        System.out.println("-=+=- Test 3 -> seller findAll -=+=-");
+        list = sellerDao.findAll();
+        for (Seller obj : list) {
+            System.out.println(obj);
+        }
+        System.out.println("-=+=- Test 3 -> seller findAll -=+=-");
+
     }
 }
