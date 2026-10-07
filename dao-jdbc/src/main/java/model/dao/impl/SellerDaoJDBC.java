@@ -71,7 +71,7 @@ public class SellerDaoJDBC implements SellerDao {
         PreparedStatement st = null;
         try {
             st = conn.prepareStatement(
-                "INSERT seller "
+                "UPDATE seller "
                 + "SET Name = ?, Email = ?, BirthDate = ?, BaseSalary = ?, DepartmentId = ? "
                 + "WHERE Id = ?"
             );
@@ -104,7 +104,7 @@ public class SellerDaoJDBC implements SellerDao {
             int rows = st.executeUpdate();
 
             if (rows == 0) {
-                throw new DbException("No seller find with the id: " + id);
+                throw new DbException("No seller found with this id: " + id);
             }
         }
         catch (SQLException e) {
