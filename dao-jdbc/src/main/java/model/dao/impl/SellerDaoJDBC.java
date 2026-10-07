@@ -11,8 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.mysql.cj.x.protobuf.MysqlxPrepare.Prepare;
-
 import db.DbException;
 import db.DB;
 import model.dao.SellerDao;
