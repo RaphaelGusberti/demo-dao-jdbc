@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.mysql.cj.x.protobuf.MysqlxPrepare.Prepare;
+
 import db.DbException;
 import db.DB;
 import model.dao.SellerDao;
@@ -93,8 +95,24 @@ public class SellerDaoJDBC implements SellerDao {
 
     @Override
     public void deleteByID(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteByID'");
+        PreparedStatement st = null;
+        try {
+            st = conn.prepareStatement("DELETE FROM seller WHERE ID = ?");
+
+            st.setInt(1, id);
+            
+            int rows = st.executeUpdate();
+
+            if (rows == 0) {
+                throw new DbException("No seller find with the id: " + id);
+            }
+        }
+        catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+        finally {
+            DB.closeStatement(st);
+        }
     }
 
     @Override
